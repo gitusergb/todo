@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useSelector } from "react-redux";
+import TaskForm from "./components/TaskForm";
+import TaskItem from "./components/TaskItem"; 
+import { RootState } from "./redux/store";
 
-function App() {
+const App: React.FC = () => {
+  const tasks = useSelector((state: RootState) => state.tasks.tasks);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>To-Do App</h1>
+        
+        {/* TaskForm for adding new tasks */}
+        <TaskForm />
+
+        {/* Task list */}
+        <ul className="task-list">
+          {tasks.map(task => (
+            <TaskItem key={task.id} task={task} />
+          ))}
+        </ul>
       </header>
     </div>
   );
-}
+};
 
 export default App;
