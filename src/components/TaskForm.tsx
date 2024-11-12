@@ -16,7 +16,7 @@ const TaskForm: React.FC = () => {
         const newTask = { title, description, dueDate, completed };
 
         try {
-            const response = await axios.post("http://localhost:5000/tasks", newTask);
+            const response = await axios.post("https://todo-backend-oidt.onrender.com/add", newTask);
             dispatch(addTask(response.data)); 
         } catch (error) {
             console.error("Error adding task:", error);

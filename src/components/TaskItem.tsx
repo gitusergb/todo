@@ -1,4 +1,3 @@
-// src/components/TaskItem.tsx
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -23,7 +22,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
 
     const handleUpdate = async () => {
         try {
-            const response = await axios.put(`http://localhost:5000/tasks/${task.id}`, editedTask);
+            const response = await axios.put(`https://todo-backend-oidt.onrender.com/${task.id}`, editedTask);
             dispatch(updateTask(response.data));
             setIsEditing(false);
         } catch (error) {
@@ -33,7 +32,7 @@ const TaskItem: React.FC<TaskItemProps> = ({ task }) => {
 
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:5000/tasks/${task.id}`);
+            await axios.delete(`https://todo-backend-oidt.onrender.com/${task.id}`);
             dispatch(deleteTask(task.id));
         } catch (error) {
             console.error("Error deleting task:", error);
